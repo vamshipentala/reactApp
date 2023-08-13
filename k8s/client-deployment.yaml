@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+  #namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: vamshipentala/reactapp:frontend18
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BACKEND_SERVICE_HOST # Environment variable for backend service host
+              value: backend-service # Use the actual service name
+            - name: BACKEND_SERVICE_PORT # Environment variable for backend service port
+              value: "8800" # Use the actual port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+  #namespace: dev
+spec:
+  selector:
+    app: client
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  #type: LoadBalancer
