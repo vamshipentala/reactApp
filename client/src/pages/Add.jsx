@@ -3,14 +3,14 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const BACKEND_SERVICE_HOST = process.env.REACT_APP_BACKEND_SERVICE_HOST;
-const BACKEND_SERVICE_PORT = process.env.REACT_APP_BACKEND_SERVICE_PORT;
+const _host = process.env.REACT_APP_BACKEND_SERVICE_HOST;
+const _port = process.env.REACT_APP_BACKEND_SERVICE_PORT;
 const Add = () => {
   const [book, setBook] = useState({
     title: "",
     desc: "",
     price: null,
-    cover: "",
+    cover: "https://i.pinimg.com/474x/9c/cd/d4/9ccdd4f3d6876e37b21e31c4abbeeb56.jpg",
   });
   const [error,setError] = useState(false)
 
@@ -23,7 +23,7 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://www.itackmarketing.com:80/api/books`, book);
+      await axios.post(`http://${_host}:${_port}/api/books`, book);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -39,11 +39,12 @@ const Add = () => {
         placeholder="Book title"
         name="title"
         onChange={handleChange}
+        required // Mark the field as required
       />
       <textarea
         rows={5}
         type="text"
-        placeholder="Book desc"
+        placeholder="Book Description"
         name="desc"
         onChange={handleChange}
       />
@@ -55,13 +56,13 @@ const Add = () => {
       />
       <input
         type="text"
-        placeholder="Book cover"
+        placeholder="Book cover image URL"
         name="cover"
         onChange={handleChange}
       />
-      <button onClick={handleClick}>Add</button>
+      <button onClick={handleClick} className="addHome">Add</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/" style={{ color: 'white' }}>See all books</Link>
     </div>
   );
 };

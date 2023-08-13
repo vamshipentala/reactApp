@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const BACKEND_SERVICE_HOST = process.env.REACT_APP_BACKEND_SERVICE_HOST;
-const BACKEND_SERVICE_PORT = process.env.REACT_APP_BACKEND_SERVICE_PORT;
+const _host = process.env.REACT_APP_BACKEND_SERVICE_HOST;
+const _port = process.env.REACT_APP_BACKEND_SERVICE_PORT;
 const Update = () => {
   const [book, setBook] = useState({
     title: "",
@@ -26,7 +26,7 @@ const Update = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://www.itackmarketing.com:80/api/books/${bookId}`, book);
+      await axios.put(`http://${_host}:${_port}/api/books/${bookId}`, book);
       navigate("/");
     } catch (err) {
       console.log(err);

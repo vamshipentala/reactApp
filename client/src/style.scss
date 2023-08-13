@@ -5,52 +5,109 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: #232222;
 
   .addHome {
-    padding: 10px;
-    margin-top: 10px;
+    padding: 5px;
+    margin-top: 5px;
     cursor: pointer;
     border: none;
     background-color: teal;
     color: white;
     font-weight: bold;
   }
-
-  h1 {
-    margin-bottom: 10px;
+  .addHome {
+    padding: 10px 20px; /* Adjust padding for the elliptical shape */
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #1ea33c;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px; /* Make it elliptical by using border-radius */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Adding transition for hover effect */
+    display: inline-block;
+    overflow: hidden; /* Clip the content inside the button */
   }
 
+  .addHome:hover {
+    background-color: black; /* Change the color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+  }
+
+  h1 {
+    margin-bottom: 5px;
+    padding: 5px 0;
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    50%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.01);
+    }
+  }
   .books {
     display: flex;
+    flex-wrap: wrap;
 
     .book {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
-      margin: 25px;; 
+      gap: 1px;
+      margin: 25px;
+      background-color: #272626;
+      color: #cdcdcd;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      width: 10;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+
+      
       img {
+        border: 1px solid gray; 
         width: 200px;
         height: 300px;
         object-fit: cover;
       }
 
       button {
-        padding: 3px 6px;
-        background-color: white;
+        padding: 5px 20px;
+        background-color: #272626;
         cursor: pointer;
       }
       .delete {
-        border: 1px solid rgb(245, 191, 191);
-        color: rgb(242, 100, 100);
+        border: 1px solid gray;
+        color: whitesmoke;
+        cursor: pointer;
       }
       .update {
-        border: 1px solid rgb(204, 204, 243);
-        color: rgb(139, 139, 234);
+        border: 1px solid gray;
+        color: whitesmoke;
+        cursor: pointer;  
       }
+
     }
+    .delete:hover {
+      background-color:darkred;
+    }
+    .update:hover {
+      background-color:green;
+    }
+    .book:hover {
+      transform: scale(1.05);
+    }
+    
   }
+  
 
   .form {
     display: flex;
@@ -76,5 +133,23 @@
       font-weight: bold;
       cursor: pointer;
     }
+  }
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .delete, .update {
+    /* Styles for the delete and update buttons */
+    padding: 5px 10px;
+    background-color: red; /* Delete button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .update {
+    background-color: blue; /* Update button color */
   }
 }

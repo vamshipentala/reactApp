@@ -39,7 +39,7 @@ app.get("/api/books", (req, res) => {
   });
 });
 
-app.post("/books", (req, res) => {
+app.post("/api/books", (req, res) => {
   const q = "INSERT INTO books(`title`, `desc`, `price`, `cover`) VALUES (?)";
 
   const values = [
@@ -55,17 +55,16 @@ app.post("/books", (req, res) => {
   });
 });
 
-app.delete("/books/:id", (req, res) => {
+app.delete("/api/books/:id", (req, res) => {
   const bookId = req.params.id;
-  const q = " DELETE FROM books WHERE id = ? ";
-
+  const q = "DELETE FROM books WHERE id = ?";
   db.query(q, [bookId], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   });
 });
 
-app.put("/books/:id", (req, res) => {
+app.put("/api/books/:id", (req, res) => {
   const bookId = req.params.id;
   const q = "UPDATE books SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
 
